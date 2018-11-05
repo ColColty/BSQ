@@ -5,13 +5,15 @@
 ## Makefile
 ##
 
-SRC	=	\
+SRC_DIR	=	$(realpath ./src)
 
-MAIN_SRC	=	
+LIB_FILE	=	$(realpath ./lib/my/)
+
+SRC	=	$(SRC_DIR)/\
+
+MAIN_SRC	=	main.c
 
 NAME	=	a.out
-
-LIB_FILE	=	./lib/my/
 
 LIB	=	-L$(LIB_FILE) -lmy
 
@@ -21,7 +23,7 @@ all:	$(NAME)
 
 $(NAME):
 	make -C $(LIB_FILE)
-	gcc -o $(NAME) $(MAIN_SRC) $(SRC) $(INCLUDE) $(LIB)
+	gcc -o $(NAME) $(MAIN_SRC) $(SRC) $(INCLUDE) $(LIB) -g3
 
 clean:
 	make clean -C $(LIB_FILE)
