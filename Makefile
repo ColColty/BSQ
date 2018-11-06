@@ -9,7 +9,9 @@ SRC_DIR	=	$(realpath ./src)
 
 LIB_FILE	=	$(realpath ./lib/my/)
 
-SRC	=	$(SRC_DIR)/\
+TEST_SRC	=	$(realpath ./test)
+
+SRC	=	$(SRC_DIR)/bsq.c	\
 
 MAIN_SRC	=	main.c
 
@@ -37,3 +39,7 @@ re:	fclean all
 precise:
 	make -C $(LIB_FILE)
 	gcc -o $(NAME) $(MAIN_SRC) $(SRC) $(INCLUDE) $(LIB) -Wall -Wextra
+
+test:
+	make -C $(LIB_FILE)
+	gcc -o unit_tests $(MAIN_SRC) $(SRC) $(TEST_SRC) --coverage -lcriterion
