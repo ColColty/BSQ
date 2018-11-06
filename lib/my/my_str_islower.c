@@ -10,13 +10,11 @@ int my_str_islower(char const *str)
     int i = 0;
     int lower = 0;
 
-    while (str[i] != '\0') {
-        if (str[i] <= 122 && str[i] >= 97) {
+    for (i; str[i] != '\0'; i++) {
+        if (str[i] <= 122 && str[i] >= 97)
             lower = 1;
-        } else {
+        else
             return (0);
-        }
-        i++;
     }
     return (lower);
 }

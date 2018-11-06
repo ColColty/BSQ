@@ -7,10 +7,10 @@
 
 void my_sort_int_array(int *array, int size)
 {
-    int i;
-    int c;
+    int i = 0;
+    int c = 0;
 
-    for (i = 0; i < size * 100; i++) {
+    for (i; i < size * 50; i++) {
         if (array[i] <= array[i + 1]) {
             c = array[i];
             array[i] = array[i + 1];

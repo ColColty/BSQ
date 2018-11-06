@@ -10,13 +10,11 @@ int my_str_isnum(char const *str)
     int i = 0;
     int num = 0;
 
-    while (str[i] != '\0') {
-        if (str[i] <= 57 && str[i] >= 48) {
+    for (i; str[i] != '\0'; i++) {
+        if (str[i] <= 57 && str[i] >= 48)
             num = 1;
-        } else {
+        else
             return (0);
-        }
-        i++;
     }
     return (num);
 }

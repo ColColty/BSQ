@@ -11,32 +11,24 @@ int recursive_power(int nb, int p, int power, int i)
         power *= nb;
         i++;
         recursive_power(nb, p, power, i);
-    } else {
+    } else
         return (power);
-    }
 }
 
 int test_negatif(int nb, int p)
 {
-    int negatif = 1;
-
-    if (nb < 0) {
-        if (p % 2 == 1) {
-            negatif = -1;
-        } else {
-            negatif = 1;
-        }
-    }
-    return (negatif);
+    if (nb < 0)
+        if (p % 2 == 1)
+            return (-1);
+    return (1);
 }
 
 int my_compute_power_rec(int nb, int p)
 {
-    if (p == 0) {
+    if (p == 0)
         return (1);
-    } else if (p < 0) {
+    else if (p < 0)
         return (0);
-    } else {
+    else
         return (recursive_power(nb, p, 1, 0) * test_negatif(nb, p));
-    }
 }

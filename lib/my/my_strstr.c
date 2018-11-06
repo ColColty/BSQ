@@ -16,17 +16,12 @@ char *my_strstr(char *str, char const *to_find)
     int len;
 
     len = my_strlen(to_find);
-    while (str[i] != '\0'){
+    for (i; str[i] != '\0'; i++){
         k = 0;
-        while (to_find[k] != '\0' && str[i] == to_find[k]) {
+        for (k; to_find[k] != '\0' && str[i + k] == to_find[k]; k++)
             corresp++;
-            k++;
-            i++;
-        }
-        if (corresp == len) {
-            return (&str[i - k]);
-        }
-        i++;
+        if (corresp == len)
+            return (&str[i]);
     }
     return (NULL);
 }

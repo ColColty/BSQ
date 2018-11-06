@@ -8,10 +8,9 @@ void my_putchar(char c);
 
 int my_putstr(char const *str)
 {
-    int i;
+    int i = 0;
 
-    for (i = 0; str[i] != '\0'; i++) {
+    for (i; str[i] != '\0'; i++)
         my_putchar(str[i]);
-    }
     return (0);
 }

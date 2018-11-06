@@ -39,4 +39,5 @@ char *my_strncat(char *dest, char const *src, int nb);
 int recursive_power(int nb, int p, int power, int i);
 int test_negatif(int nb, int p);
 int test_null_putnbr(int nl);
+int my_show_word_array(char * const * tab);
 #endif

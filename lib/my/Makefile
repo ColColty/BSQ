@@ -35,6 +35,7 @@ SRC	=	my_compute_power_rec.c	\
 	my_strstr.c	\
 	my_strupcase.c	\
 	my_swap.c	\
+	my_show_word_array.c	\
 
 OBJ	=	$(SRC:.c=.o)
 
