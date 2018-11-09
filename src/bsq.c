@@ -21,27 +21,19 @@ int nbr_lines(char const *str)
         if (str[i] == '\n')
             lines++;
     }
-    return (lines + 1);
+    return (lines);
 }
 
 void *malloc_tab(char const *str)
 {
-    int i;
-    int k = 0;
+    int i = 0;
+    int lines = nbr_lines(str);
     char **tab;
-    int temp_i = 0;
 
-    tab = malloc(sizeof(char*) * nbr_lines(str));
-    while (str[i] != '\0') {
-        if (str[i] == '\n') {
-            tab[k] = malloc(sizeof(char) * (i - temp_i));
-            k++;
-            temp_i = i;
-        }
-        i++;
-    }
-    tab[k] = malloc(sizeof(char) * (i - temp_i));
-    tab[k] = 0;
+    tab = malloc(sizeof(char*) * lines);
+    for (i; i <= lines; i++)
+        tab[i] = malloc(sizeof(char) * lines);
+    tab[i] = 0;
     return (&tab[0]);
 }
 
@@ -54,12 +46,14 @@ int buff_to_str(char *str)
 
     file = malloc_tab(str);
     for (i = 0; str[i] != '\0'; i++) {
-        if (str[i] == '\n')
+        if (str[i] == '\n'){
             file[k++][j] = '\0';
+            j = 0;
+        }
         file[k][j++] = str[i];
     }
     file[k][j] = '\0';
-    my_show_word_array(file);
+    // find_the_square(file);
     return (0);
 }
 
@@ -69,11 +63,13 @@ int fs_open_file(char const *file_path)
     char buffer[30000];
 
     fd = open(file_path, O_RDONLY);
-    if (fd >= -1)
+    if (fd <= -1) {
         my_putstr("FAILURE\n");
-    else
+        return (84);
+    } else
         my_putstr("SUCCESS\n");
     read(fd, buffer, 29999);
     buff_to_str(buffer);
     close(fd);
+    return (0);
 }

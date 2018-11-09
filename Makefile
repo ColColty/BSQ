@@ -12,6 +12,7 @@ LIB_FILE	=	$(realpath ./lib/my/)
 TEST_SRC	=	$(realpath ./test)
 
 SRC	=	$(SRC_DIR)/bsq.c	\
+	$(SRC_DIR)/find_the_square.c	\
 
 MAIN_SRC	=	main.c
 
@@ -30,7 +31,7 @@ $(NAME):
 clean:
 	make clean -C $(LIB_FILE)
 
-fclean:	clean
+fclean:
 	rm -f $(NAME)
 	make fclean -C $(LIB_FILE)
 
