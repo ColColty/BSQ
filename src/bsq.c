@@ -17,22 +17,23 @@ int nbr_lines(char const *str)
     int i;
     int lines = 0;
 
-    for (i = 0; str[i] != '\0'; i++) {
+    for (i = 0; str[i] != '\0'; i++)
         if (str[i] == '\n')
             lines++;
-    }
     return (lines);
 }
 
 void *malloc_tab(char const *str)
 {
     int i = 0;
-    int lines = nbr_lines(str);
+    int lines = nbr_lines(str) + 1;
     char **tab;
+    int cols = 0;
 
+    for (cols; str[cols] != '\n'; cols++);
     tab = malloc(sizeof(char*) * lines);
     for (i; i <= lines; i++)
-        tab[i] = malloc(sizeof(char) * lines);
+        tab[i] = malloc(sizeof(char) * cols);
     tab[i] = 0;
     return (&tab[0]);
 }
@@ -49,11 +50,13 @@ int buff_to_str(char *str)
         if (str[i] == '\n'){
             file[k++][j] = '\0';
             j = 0;
+            i++;
         }
         file[k][j++] = str[i];
     }
-    file[k][j] = '\0';
-    // find_the_square(file);
+    file[k][j] = '0';
+    my_show_word_array(file);
+    find_the_square(file);
     return (0);
 }
 

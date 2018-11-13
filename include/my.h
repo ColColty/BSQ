@@ -6,6 +6,9 @@
 */
 #ifndef MY_H_
 #define MY_H_
+
+#include <stdlib.h>
+
 void my_putchar(char c);
 int my_isneg(int nb);
 int my_put_nbr(int nb);
