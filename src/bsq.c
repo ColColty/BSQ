@@ -32,7 +32,7 @@ void *malloc_tab(char const *str)
 
     for (cols; str[cols] != '\n'; cols++);
     tab = malloc(sizeof(char*) * lines);
-    for (i; i <= lines; i++)
+    for (i; i < lines; i++)
         tab[i] = malloc(sizeof(char) * cols);
     tab[i] = 0;
     return (&tab[0]);
@@ -54,25 +54,32 @@ int buff_to_str(char *str)
         }
         file[k][j++] = str[i];
     }
-    file[k][j] = '0';
+    file[k][j] = 0;
     my_show_word_array(file);
     find_the_square(file);
+    free(file);
     return (0);
 }
 
 int fs_open_file(char const *file_path)
 {
-    int fd;
-    char buffer[30000];
+    int fd = open(file_path, O_RDONLY);
+    char *buffer;
+    struct stat sd;
 
-    fd = open(file_path, O_RDONLY);
-    if (fd <= -1) {
+    if (fd <= -1 || stat(file_path, &sd) == -1) {
+        close(fd);
         my_putstr("FAILURE\n");
         return (84);
     } else
         my_putstr("SUCCESS\n");
-    read(fd, buffer, 29999);
+    buffer = malloc(sd.st_size);
+    if (buffer == NULL)
+        return (84);
+    read(fd, buffer, sd.st_size);
+    buffer[sd.st_size] = '\0';
     buff_to_str(buffer);
     close(fd);
+    free(buffer);
     return (0);
 }

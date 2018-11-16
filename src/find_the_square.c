@@ -17,13 +17,11 @@ int test_square(char **tab, int x, int *y, int *h)
         for (i = 0; i < x; i++) {
             if (tab[k][i] == '\n') {
                 i = x;
-                *h = *h + 1;
-                *y = 0;
             } else if (tab[k][i] == 'o') {
                 break_toggle = i;
                 *y = x;
+                *h = k;
             }
-            *y = *y + 1;
         }
     }
     x++;
