@@ -7,42 +7,50 @@
 
 #include "my.h"
 
-int test_square(char **tab, int x, int *y, int *h)
+int finder(char **tab, int *x, int *y, int size)
 {
-    int i = 0;
-    int k = 0;
-    int break_toggle = -1;
+    int xcount = *x;
+    int ycount = *y;
+    int incrementator = 0;
 
-    for (k = 0; k < x; k++) {
-        for (i = 0; i < x; i++) {
-            if (tab[k][i] == '\n') {
-                i = x;
-            } else if (tab[k][i] == 'o') {
-                break_toggle = i;
-                *y = x;
-                *h = k;
-            }
-        }
+    for (ycount; ycount <= size; ycount++) {
+        for (xcount; xcount <= size; xcount++)
+            if (tab[ycount][xcount] == 'o' || tab[ycount][xcount] == '\0')
+                incrementator = 1;
+        if (incrementator)
+            return (size - 1);
+        else
+            xcount = x;
     }
-    x++;
-    if (tab[k][i] != '\0')
-        test_square(tab, x, &k, &h);
-    else
-        return (break_toggle);
 }
 
-int find_the_square(char **tab)
+int find_the_square(char **tab, int x, int y, biggest_square_t square)
 {
-    int how_many = 0;
-    int y = 0;
-    int i = 0;
-    int j = 0;
-    int h = 0;
+    int size = 1;
 
-    how_many = test_square(tab, 1, &y, &h);
-    for (i = h; i < how_many; i++)
-        for (j = y; j <= how_many; j++)
-            tab[i][j] = 'X';
-    my_show_word_array(tab);
+    size = finder(tab, &x, &y, size);
+    if (size >= square.size) {
+        square.size = size;
+        square.x = x;
+        square.y = y;
+    }
+    x++;
+    if (tab[y][x] == '\0' || (tab[y][x] == 'o' && tab[y][x] == '\0'))
+        y++;
+    if (tab[y] != 0)
+        find_the_square(tab, x, y, square);
+    else
+        print_square(tab, square);
     return (0);
+}
+
+void print_square(char **tab, biggest_square_t square)
+{
+    int x = square.x;
+    int y = square.y;
+
+    for (y; y <= square.size; y++)
+        for (x; x <= square.size; x++)
+            tab[y][x] = 'X';
+    my_show_word_array(tab);
 }

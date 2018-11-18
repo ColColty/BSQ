@@ -43,10 +43,9 @@ int recursive_power(int nb, int p, int power, int i);
 int test_negatif(int nb, int p);
 int test_null_putnbr(int nl);
 int my_show_word_array(char * const * tab);
-typedef struct variables_square {
-    int i;
-    int k;
-    int dot_counter;
-    int ant_dot_counter;
-} variables_square_t;
+typedef struct biggest_square {
+    int x;
+    int y;
+    int size;
+} biggest_square_t;
 #endif

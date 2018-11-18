@@ -30,8 +30,9 @@ $(NAME):
 
 clean:
 	make clean -C $(LIB_FILE)
+	@rm peda*
 
-fclean:
+fclean:	clean
 	rm -f $(NAME)
 	make fclean -C $(LIB_FILE)
 

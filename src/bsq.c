@@ -44,6 +44,7 @@ int buff_to_str(char *str)
     int i;
     int j = 0;
     int k = 0;
+    biggest_square_t square = {0,0,1};
 
     file = malloc_tab(str);
     for (i = 0; str[i] != '\0'; i++) {
@@ -54,9 +55,9 @@ int buff_to_str(char *str)
         }
         file[k][j++] = str[i];
     }
-    file[k][j] = 0;
+    file[k][0] = 0;
     my_show_word_array(file);
-    find_the_square(file);
+    find_the_square(file, 0, 0, square);
     free(file);
     return (0);
 }
