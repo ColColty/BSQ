@@ -57,7 +57,7 @@ int buff_to_str(char *str)
     }
     file[k][0] = 0;
     my_show_word_array(file);
-    find_the_square(file, 0, 0, square);
+    find_the_square(file);
     free(file);
     return (0);
 }
