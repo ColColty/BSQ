@@ -5,11 +5,6 @@
 ** bsq
 */
 
-#include <stdlib.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
 #include "my.h"
 
 int nbr_lines(char const *str)
@@ -44,10 +39,11 @@ int buff_to_str(char *str)
     int i;
     int j = 0;
     int k = 0;
-    biggest_square_t square = {0,0,1};
 
     file = malloc_tab(str);
-    for (i = 0; str[i] != '\0'; i++) {
+    /* for (i = 0; str[i] != '\n'; i++);
+    i++; */
+    for (i; str[i] != '\0'; i++) {
         if (str[i] == '\n'){
             file[k++][j] = '\0';
             j = 0;
@@ -58,7 +54,6 @@ int buff_to_str(char *str)
     file[k][0] = 0;
     my_show_word_array(file);
     find_the_square(file);
-    free(file);
     return (0);
 }
 
