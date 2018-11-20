@@ -33,6 +33,9 @@ $(NAME):
 clean:
 	make clean -C $(LIB_FILE)
 	@rm -f peda*
+	@rm -f *.gc*
+	@rm -f *.o
+	@rm -f unit_tests
 
 fclean:	clean
 	rm -f $(NAME)
