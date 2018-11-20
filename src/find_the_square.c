@@ -7,34 +7,17 @@
 
 #include "my.h"
 
-void *malloc_int(char **tab)
+void squaring_map(square_t square, char **tab, int x, int y)
 {
-    int **tmp = NULL;
-    int i = 0;
-    int k = 0;
-    int size_line = my_strlen(tab[0]);
-
-    for (i; tab[i] != 0; i++);
-    tmp = malloc(sizeof(int *) * (i + 1));
-    for (k; k < i; k++) {
-        tmp[k] = malloc(sizeof(int) * (size_line + 1));
-        tmp[k][size_line] = 0;
-    }
-    tmp[i] = 0;
-    return (&tmp[0]);
-}
-
-int squaring_map(square_t square, char **tab, int x, int y)
-{
-    if (square.map[y - 1][x] <= square.map[y - 1][x - 1]
-    && square.map[y - 1][x] <= square.map[y][x - 1])
-        square.map[y][x] = square.map[y - 1][x] + 1;
-    if (square.map[y - 1][x - 1] <= square.map[y - 1][x]
-    && square.map[y - 1][x - 1] <= square.map[y][x - 1])
-        square.map[y][x] = square.map[y - 1][x - 1] + 1;
-    if (square.map[y][x - 1] <= square.map[y - 1][x - 1]
-    && square.map[y][x - 1] <= square.map[y - 1][x])
-        square.map[y][x] = square.map[y][x - 1] + 1;
+    if (tab[y - 1][x] <= tab[y - 1][x - 1]
+    && tab[y - 1][x] <= tab[y][x - 1])
+        tab[y][x] = tab[y - 1][x] + 1;
+    if (tab[y - 1][x - 1] <= tab[y - 1][x]
+    && tab[y - 1][x - 1] <= tab[y][x - 1])
+        tab[y][x] = tab[y - 1][x - 1] + 1;
+    if (tab[y][x - 1] <= tab[y - 1][x - 1]
+    && tab[y][x - 1] <= tab[y - 1][x])
+        tab[y][x] = tab[y][x - 1] + 1;
 }
 
 void first_lines(square_t square, char **tab)
@@ -44,30 +27,44 @@ void first_lines(square_t square, char **tab)
 
     for (x = 0; tab[0][x] != 0; x++) {
         if (tab[0][x] == 'o')
-            square.map[0][x] = 1;
+            tab[0][x] = 1;
         else
-            square.map[0][x] = 2;
+            tab[0][x] = 2;
     }
     for (y = 0; tab[y] != 0; y++) {
         if (tab[y][0] == 'o')
-            square.map[y][0] = 1;
+            tab[y][0] = 1;
         else
-            square.map[y][0] = 2;
+            tab[y][0] = 2;
     }
 }
 
-int find_biggest(square_t square, char **tab)
+void print_tab(char **tab)
 {
     int x = 0;
     int y = 0;
+
+    for (y; tab[y] != 0; y++)
+        for (x = 0; tab[y][x] != '\0'; x++)
+            if (tab[y][x] == 1)
+                tab[y][x] = 'o';
+            else if (tab[y][x] != 'x')
+                tab[y][x] = '.';
+    my_show_word_array(tab);
+}
+
+void find_biggest(square_t square, char **tab)
+{
+    int y = 0;
+    int x = 0;
     int big = 0;
     int y_big = 0;
     int x_big = 0;
 
-    for (y; square.map[y] != 0; y++)
-        for (x = 0; square.map[y][x] != '\0'; x++)
-            if (square.size_big < square.map[y][x]) {
-                square.size_big = square.map[y][x];
+    for (y; tab[y] != 0; y++)
+        for (x = 0; tab[y][x] != '\0'; x++)
+            if (square.size_big < tab[y][x]) {
+                square.size_big = tab[y][x];
                 square.x_big = x;
                 square.y_big = y;
             }
@@ -77,29 +74,24 @@ int find_biggest(square_t square, char **tab)
     for (y = y_big - big; y <= y_big; y++)
         for (x = x_big - big; x <= x_big; x++)
             tab[y][x] = 'x';
-    my_show_word_array(tab);
+    print_tab(tab);
 }
 
-int find_the_square(char **tab)
+void find_the_square(char **tab)
 {
     int y = 1;
     int x = 1;
-    square_t square = {1};
+    square_t square = {1, 0, 0};
 
-    square.map = malloc_int(tab);
     first_lines(square, tab);
     for (y = 1; tab[y] != 0; y++)
         for (x = 1; tab[y][x] != '\0'; x++)
             if (tab[y][x] == 'o')
-                square.map[y][x] = 1;
+                tab[y][x] = 1;
             else
                 squaring_map(square, tab, x, y);
     find_biggest(square, tab);
-    for (y = 0; square.map[y] != 0; y++)
-        free(square.map[y]);
     for (y = 0; tab[y] != 0; y++)
         free(tab[y]);
-    free(square.map);
     free(tab);
-    return (0);
 }

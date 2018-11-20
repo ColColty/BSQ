@@ -39,7 +39,7 @@ void *malloc_tab(char const *str)
     return (&tab[0]);
 }
 
-int buff_to_str(char *str)
+void buff_to_str(char *str)
 {
     char **file;
     int i = 0;
@@ -57,8 +57,8 @@ int buff_to_str(char *str)
         }
         file[k][j++] = str[i];
     }
+    free(str);
     find_the_square(file);
-    return (0);
 }
 
 int fs_open_file(char const *file_path)
@@ -69,7 +69,7 @@ int fs_open_file(char const *file_path)
 
     if (fd <= -1)
         return (84);
-    if (stat(file_path, &sd) == -1) {
+    if (stat(file_path, &sd) == -1 && sd.st_size >= 500000000000) {
         close(fd);
         return (84);
     }
@@ -80,6 +80,5 @@ int fs_open_file(char const *file_path)
     buffer[--sd.st_size] = '\0';
     buff_to_str(buffer);
     close(fd);
-    free(buffer);
     return (0);
 }
