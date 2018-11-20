@@ -14,6 +14,8 @@ TEST_SRC	=	$(realpath ./test)
 SRC	=	$(SRC_DIR)/bsq.c	\
 	$(SRC_DIR)/find_the_square.c	\
 
+TESTS	=	$(TEST_SRC)/test_out.c	\
+
 MAIN_SRC	=	main.c
 
 NAME	=	a.out
@@ -42,6 +44,9 @@ precise:
 	make -C $(LIB_FILE)
 	gcc -o $(NAME) $(MAIN_SRC) $(SRC) $(INCLUDE) $(LIB) -Wall -Wextra
 
-test:
-	make -C $(LIB_FILE)
-	gcc -o unit_tests $(MAIN_SRC) $(SRC) $(TEST_SRC) --coverage -lcriterion
+tests_run:	re
+	gcc -c $(SRC) $(INCLUDE) --coverage
+	gcc -c $(TESTS) $(INCLUDE)
+	gcc -o unit_tests *.o $(LIB) -lcriterion -lgcov
+	./unit_tests
+	gcovr
