@@ -15,9 +15,9 @@
 #include <fcntl.h>
 
 typedef struct square {
+    int size_big;
     int x_big;
     int y_big;
-    int size_big;
     int **map;
 } square_t;
 
