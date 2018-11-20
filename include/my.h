@@ -19,5 +19,6 @@ char *my_revstr(char *str);
 int test_negatif(int nb, int p);
 int test_null_putnbr(int nl);
 int my_show_word_array(char * const * tab);
+int my_getnbr(char const *str);
 
 #endif

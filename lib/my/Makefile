@@ -12,6 +12,7 @@ SRC	=	my_isneg.c	\
 	my_revstr.c	\
 	my_strlen.c	\
 	my_show_word_array.c	\
+	my_getnbr.c	\
 
 OBJ	=	$(SRC:.c=.o)
 

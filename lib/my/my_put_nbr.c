@@ -15,7 +15,7 @@ int my_put_nbr(int n)
     int eliminator = 0;
     long int n2 = n;
 
-    if (n2 == 0)
+    if (n == 0)
         my_putchar(48);
     else {
         n2 *= my_isneg(n2);
