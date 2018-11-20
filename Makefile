@@ -18,7 +18,7 @@ TESTS	=	$(TEST_SRC)/test_out.c	\
 
 MAIN_SRC	=	main.c
 
-NAME	=	a.out
+NAME	=	bsq
 
 LIB	=	-L$(LIB_FILE) -lmy
 
