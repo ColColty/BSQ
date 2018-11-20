@@ -32,7 +32,7 @@ int getnbr_limite2(int taille_nbr, int nombre)
 
 int getnbr_return_nbr(int taille_nbr, int i, int nombre, char const *str)
 {
-    int resultat=0;
+    int resultat = 0;
 
     if (getnbr_limite1(nombre, taille_nbr, str, i) == 0)
         return (0);
@@ -42,10 +42,10 @@ int getnbr_return_nbr(int taille_nbr, int i, int nombre, char const *str)
 
 int my_getnbr(char const *str)
 {
-    int compteur=0;
-    int nombre=0;
-    int taille_nbr=0;
-    int minus=0;
+    int compteur = 0;
+    int nombre = 0;
+    int taille_nbr = 0;
+    int minus = 0;
 
     for (compteur; str[compteur] != '\0'; compteur++) {
         if (str[compteur] == 45)

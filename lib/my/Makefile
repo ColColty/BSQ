@@ -5,14 +5,11 @@
 ## Do a file who compile for us
 ##
 
-SRC	=	my_isneg.c	\
-	my_put_nbr.c	\
-	my_putchar.c	\
-	my_putstr.c	\
-	my_revstr.c	\
+SRC	=	my_putstr.c	\
 	my_strlen.c	\
 	my_show_word_array.c	\
 	my_getnbr.c	\
+	my_putchar.c	\
 
 OBJ	=	$(SRC:.c=.o)
 
