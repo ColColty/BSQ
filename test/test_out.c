@@ -18,7 +18,7 @@ void redirect_all_std(void)
 Test(fs_open_file, test01, .init = redirect_all_std)
 {
     fs_open_file("mouli_maps/testing_map");
-    cr_assert_stdout_eq_str("...o..\n..o..o\n......\n.o.o..\nxxxx.o\nxxxx.o\nxxxxo.\nxxxx.o\no...o.\n");
+    cr_assert_stdout_eq_str("xxxx.o\nxxxx.o\nxxxxo.\nxxxx.o\no...o.\n");
 }
 
 Test(fs_open_file, test04, .init = redirect_all_std)
