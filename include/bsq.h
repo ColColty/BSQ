@@ -18,9 +18,8 @@ typedef struct square {
     int size_big;
     int x_big;
     int y_big;
-    int **map;
 } square_t;
 
-int find_the_square(char **tab);
+void find_the_square(char **tab);
 
 #endif

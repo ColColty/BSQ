@@ -7,7 +7,6 @@
 #ifndef MY_H_
 #define MY_H_
 
-#include <stdlib.h>
 #include "bsq.h"
 
 int my_putstr(char const *str);
