@@ -3,3 +3,5 @@ a.out
 libmy.a
 *.gn*
 peda*
+intermediate*
+.vscode
