@@ -1,7 +1,7 @@
 a.out
 *.o
 libmy.a
-*.gn*
+*.gc*
 peda*
 intermediate*
 NormEZ.rb
