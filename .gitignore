@@ -3,4 +3,6 @@ a.out
 libmy.a
 *.gn*
 peda*
+intermediate*
+NormEZ.rb
 .vscode
