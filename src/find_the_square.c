@@ -12,16 +12,15 @@ void *malloc_int(char **tab)
     int **tmp = NULL;
     int i = 0;
     int k = 0;
-    int size_line = my_strlen(tab[1]);
+    int size_line = my_strlen(tab[0]);
 
     for (i; tab[i] != 0; i++);
-    tmp = malloc(sizeof(int *) * i);
+    tmp = malloc(sizeof(int *) * (i + 1));
     for (k; k < i; k++) {
-        tmp[k] = malloc(sizeof(int) * size_line);
-        tmp[k][size_line] = '\0';
+        tmp[k] = malloc(sizeof(int) * (size_line + 1));
+        tmp[k][size_line] = 0;
     }
-    tmp[k] = malloc(sizeof(int));
-    tmp[k] = 0;
+    tmp[i] = 0;
     return (&tmp[0]);
 }
 
@@ -43,17 +42,17 @@ void first_lines(square_t square, char **tab)
     int x = 0;
     int y = 0;
 
-    for (x = 0; tab[0][x] != '\0'; x++) {
+    for (x = 0; tab[0][x] != 0; x++) {
         if (tab[0][x] == 'o')
-            square.map[0][x] = 0;
-        else
             square.map[0][x] = 1;
+        else
+            square.map[0][x] = 2;
     }
     for (y = 0; tab[y] != 0; y++) {
         if (tab[y][0] == 'o')
-            square.map[y][0] = 0;
-        else
             square.map[y][0] = 1;
+        else
+            square.map[y][0] = 2;
     }
 }
 
@@ -72,12 +71,12 @@ int find_biggest(square_t square, char **tab)
                 square.x_big = x;
                 square.y_big = y;
             }
-    big = square.size_big - 1;
+    big = square.size_big - 2;
     y_big = square.y_big;
     x_big = square.x_big;
     for (y = y_big - big; y <= y_big; y++)
         for (x = x_big - big; x <= x_big; x++)
-            tab[y][x] = 'X';
+            tab[y][x] = 'x';
     my_show_word_array(tab);
 }
 
@@ -85,20 +84,21 @@ int find_the_square(char **tab)
 {
     int y = 1;
     int x = 1;
-    square_t square;
+    square_t square = {1};
 
-    square.size_big = 1;
     square.map = malloc_int(tab);
     first_lines(square, tab);
-    for (y = 1; tab[y] != 0; y++) {
-        for (x = 1; tab[y][x] != '\0'; x++) {
+    for (y = 1; tab[y] != 0; y++)
+        for (x = 1; tab[y][x] != '\0'; x++)
             if (tab[y][x] == 'o')
-                square.map[y][x] = 0;
+                square.map[y][x] = 1;
             else
                 squaring_map(square, tab, x, y);
-        }
-    }
     find_biggest(square, tab);
+    for (y = 0; square.map[y] != 0; y++)
+        free(square.map[y]);
+    for (y = 0; tab[y] != 0; y++)
+        free(tab[y]);
     free(square.map);
     free(tab);
     return (0);
