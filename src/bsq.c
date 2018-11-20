@@ -30,7 +30,7 @@ void *malloc_tab(char const *str)
     for (prev_cols; str[prev_cols] != '\n'; prev_cols++);
     for (cols = prev_cols + 1; str[cols] != '\n'; cols++);
     cols -= prev_cols;
-    tab = malloc(sizeof(char*) * lines);
+    tab = malloc(sizeof(char *) * lines);
     for (i = 0; i < lines; i++) {
         tab[i] = malloc(sizeof(char) * (cols + 1));
         tab[i][cols] = '\0';
