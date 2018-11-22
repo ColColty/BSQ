@@ -32,7 +32,7 @@ void first_lines(square_t square, char **tab)
             tab[0][x] = 2;
     }
     for (y = 0; tab[y] != 0; y++) {
-        if (tab[y][0] == 'o')
+        if (tab[y][0] == 'o' || tab[y][0] == 1)
             tab[y][0] = 1;
         else
             tab[y][0] = 2;

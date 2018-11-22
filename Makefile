@@ -9,7 +9,7 @@ SRC_DIR	=	$(realpath ./src)
 
 LIB_FILE	=	$(realpath ./lib/my/)
 
-TEST_SRC	=	$(realpath ./test)
+TEST_SRC	=	$(realpath ./tests)
 
 SRC	=	$(SRC_DIR)/bsq.c	\
 	$(SRC_DIR)/find_the_square.c	\

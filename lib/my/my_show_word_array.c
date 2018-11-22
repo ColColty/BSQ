@@ -5,17 +5,15 @@
 ** Show an array of words
 */
 #include <stdlib.h>
-
-int my_putstr(char const *str);
-
-void my_putchar(char c);
+#include "../../include/my.h"
 
 int my_show_word_array(char * const *tab)
 {
     int i;
+    int len = my_strlen(tab[0]);
 
     for (i = 0; tab[i] != 0; i++) {
-        my_putstr(tab[i]);
+        my_putstr(tab[i], len);
         my_putchar('\n');
     }
     return (0);

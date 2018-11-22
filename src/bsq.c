@@ -17,7 +17,10 @@ char **malloc_tab(char const *str)
 
     lines = my_getnbr(str);
     for (prev_cols; str[prev_cols] != '\n'; prev_cols++);
-    for (cols = prev_cols + 1; str[cols] != '\n'; cols++);
+    if (lines == 1)
+        for (cols = prev_cols; str[cols] != '\n'; cols++);
+    else
+        for (cols = prev_cols + 1; str[cols] != '\n'; cols++);
     cols -= prev_cols;
     tab = malloc(sizeof(char *) * (lines + 1));
     for (i = 0; i < lines; i++)
@@ -50,6 +53,20 @@ void buff_to_str(char *str)
     find_the_square(file);
 }
 
+void error_handler(char *str)
+{
+    int i = 0;
+    int j = 0;
+    int lines = 0;
+    int len_str = my_strlen(str) - 1;
+
+    for (i; str[i] != '\n'; i++);
+    i++;
+    for (j = i; str[j] != '\0'; j++)
+        if (str[j] != '.' && str[j] != 'o' && str[j] != '\n')
+            exit(84);
+}
+
 int fs_open_file(char const *file_path)
 {
     int fd = open(file_path, O_RDONLY);
@@ -66,8 +83,9 @@ int fs_open_file(char const *file_path)
     if (buffer == NULL)
         return (84);
     read(fd, buffer, sd.st_size);
-    buffer[sd.st_size - 1] = '\0';
-    buff_to_str(buffer);
     close(fd);
+    buffer[sd.st_size - 1] = '\0';
+    error_handler(buffer);
+    buff_to_str(buffer);
     return (0);
 }

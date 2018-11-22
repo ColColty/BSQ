@@ -21,7 +21,7 @@ Test(fs_open_file, test01, .init = redirect_all_std)
     cr_assert_stdout_eq_str("xxxx.o\nxxxx.o\nxxxxo.\nxxxx.o\no...o.\n");
 }
 
-Test(fs_open_file, test04, .init = redirect_all_std)
+Test(fs_open_file, test02, .init = redirect_all_std)
 {
     fs_open_file("map3.txt");
 }
