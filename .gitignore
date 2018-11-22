@@ -4,6 +4,5 @@ unit_tests
 libmy.a
 *.gc*
 peda*
-intermediate*
 NormEZ.rb
 .vscode

@@ -79,12 +79,12 @@ int fs_open_file(char const *file_path)
         close(fd);
         return (84);
     }
-    buffer = malloc(sd.st_size);
+    buffer = malloc(sd.st_size + sizeof(char));
     if (buffer == NULL)
         return (84);
     read(fd, buffer, sd.st_size);
     close(fd);
-    buffer[sd.st_size - 1] = '\0';
+    buffer[sd.st_size] = '\0';
     error_handler(buffer);
     buff_to_str(buffer);
     return (0);
