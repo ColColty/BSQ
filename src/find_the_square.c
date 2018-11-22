@@ -25,7 +25,7 @@ void first_lines(square_t square, char **tab)
     int x = 0;
     int y = 0;
 
-    for (x = 0; tab[0][x] != 0; x++) {
+    for (x = 0; tab[0][x] != '\0'; x++) {
         if (tab[0][x] == 'o')
             tab[0][x] = 1;
         else

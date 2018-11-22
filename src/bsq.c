@@ -10,12 +10,11 @@
 char **malloc_tab(char const *str)
 {
     int i = 0;
-    int lines = 0;
+    int lines = my_getnbr(str);
     char **tab;
     int cols = 0;
     int prev_cols = 0;
 
-    lines = my_getnbr(str);
     for (prev_cols; str[prev_cols] != '\n'; prev_cols++);
     if (lines == 1)
         for (cols = prev_cols; str[cols] != '\n'; cols++);
@@ -25,13 +24,12 @@ char **malloc_tab(char const *str)
     tab = malloc(sizeof(char *) * (lines + 1));
     for (i = 0; i < lines; i++)
         tab[i] = malloc(sizeof(char) * (cols + 1));
-    tab[i] = NULL;
     return (tab);
 }
 
 void buff_to_str(char *str)
 {
-    char **file;
+    char **file = NULL;
     int i = 0;
     int j = 0;
     int k = 0;
@@ -49,6 +47,8 @@ void buff_to_str(char *str)
         file[k][j] = str[i];
         j++;
     }
+    k++;
+    file[k] = NULL;
     free(str);
     find_the_square(file);
 }
@@ -84,7 +84,7 @@ int fs_open_file(char const *file_path)
         return (84);
     read(fd, buffer, sd.st_size);
     close(fd);
-    buffer[sd.st_size] = '\0';
+    buffer[sd.st_size - 1] = '\0';
     error_handler(buffer);
     buff_to_str(buffer);
     return (0);
