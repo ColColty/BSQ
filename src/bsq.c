@@ -60,7 +60,9 @@ void error_handler(char *str)
     int lines = 0;
     int len_str = my_strlen(str) - 1;
 
-    for (i; str[i] != '\n'; i++);
+    for (i; str[i] != '\n'; i++)
+        if (str[i] > 57 || str[i] < 48)
+            exit(84);
     i++;
     for (j = i; str[j] != '\0'; j++)
         if (str[j] != '.' && str[j] != 'o' && str[j] != '\n')
