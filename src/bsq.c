@@ -63,6 +63,8 @@ void error_handler(char *str)
     for (i; str[i] != '\n'; i++)
         if (str[i] > 57 || str[i] < 48)
             exit(84);
+    if (i == 0)
+        exit(84);
     i++;
     for (j = i; str[j] != '\0'; j++)
         if (str[j] != '.' && str[j] != 'o' && str[j] != '\n')
