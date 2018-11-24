@@ -7,20 +7,21 @@
 
 #include "my.h"
 
-void squaring_map(square_t square, char **tab, int x, int y)
+void squaring_map(char **tab, int x, int y)
 {
-    if (tab[y - 1][x] <= tab[y - 1][x - 1]
-    && tab[y - 1][x] <= tab[y][x - 1])
-        tab[y][x] = tab[y - 1][x] + 1;
-    if (tab[y - 1][x - 1] <= tab[y - 1][x]
-    && tab[y - 1][x - 1] <= tab[y][x - 1])
-        tab[y][x] = tab[y - 1][x - 1] + 1;
-    if (tab[y][x - 1] <= tab[y - 1][x - 1]
-    && tab[y][x - 1] <= tab[y - 1][x])
-        tab[y][x] = tab[y][x - 1] + 1;
+    int up = tab[y - 1][x];
+    int up_left = tab[y - 1][x - 1];
+    int left = tab[y][x - 1];
+
+    if (up <= up_left && up <= left)
+        tab[y][x] = up + 1;
+    if (up_left <= up && up_left <= left)
+        tab[y][x] = up_left + 1;
+    if (left <= up_left && left <= up)
+        tab[y][x] = left + 1;
 }
 
-void first_lines(square_t square, char **tab)
+void first_lines(char **tab)
 {
     int x = 0;
     int y = 0;
@@ -83,13 +84,13 @@ void find_the_square(char **tab)
     int x = 1;
     square_t square = {1, 0, 0};
 
-    first_lines(square, tab);
+    first_lines(tab);
     for (y = 1; tab[y] != 0; y++)
         for (x = 1; tab[y][x] != '\0'; x++)
             if (tab[y][x] == 'o')
                 tab[y][x] = 1;
             else
-                squaring_map(square, tab, x, y);
+                squaring_map(tab, x, y);
     find_biggest(square, tab);
     for (y = 0; tab[y] != 0; y++)
         free(tab[y]);

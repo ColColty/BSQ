@@ -12,5 +12,5 @@ int my_strlen(char const *str);
 int my_putstr(char const *str, int len)
 {
     write(1, str, len);
-    return (0);
+    return (len);
 }

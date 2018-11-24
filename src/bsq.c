@@ -44,16 +44,14 @@ void buff_to_str(char *str)
             j = 0;
             i++;
         }
-        file[k][j] = str[i];
-        j++;
+        file[k][j++] = str[i];
     }
-    k++;
-    file[k] = NULL;
+    file[++k] = NULL;
     free(str);
     find_the_square(file);
 }
 
-void error_handler(char *str)
+int error_handler(char *str)
 {
     int i = 0;
     int j = 0;
@@ -62,13 +60,14 @@ void error_handler(char *str)
 
     for (i; str[i] != '\n'; i++)
         if (str[i] > 57 || str[i] < 48)
-            exit(84);
+            return (84);
     if (i == 0)
-        exit(84);
+        return (84);
     i++;
     for (j = i; str[j] != '\0'; j++)
         if (str[j] != '.' && str[j] != 'o' && str[j] != '\n')
-            exit(84);
+            return (84);
+    return (0);
 }
 
 int fs_open_file(char const *file_path)
@@ -89,7 +88,8 @@ int fs_open_file(char const *file_path)
     read(fd, buffer, sd.st_size);
     close(fd);
     buffer[sd.st_size - 1] = '\0';
-    error_handler(buffer);
+    if (error_handler(buffer))
+        return (84);
     buff_to_str(buffer);
     return (0);
 }
