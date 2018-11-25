@@ -43,7 +43,8 @@ Test(error_handler, test_without_line_number, .init = redirect_all_std)
     cr_assert_eq(84, ret);
 }
 
-Test(error_handler, test_wihtout_number_in_line_number, .init = redirect_all_std)
+Test(error_handler, test_wihtout_number_in_line_number,
+.init = redirect_all_std)
 {
     int ret;
 
@@ -51,7 +52,8 @@ Test(error_handler, test_wihtout_number_in_line_number, .init = redirect_all_std
     cr_assert_eq(84, ret);
 }
 
-Test(error_handler, test_with_a_letter_in_number_field, .init = redirect_all_std)
+Test(error_handler, test_with_a_letter_in_number_field,
+.init = redirect_all_std)
 {
     int ret;
 
