@@ -28,7 +28,7 @@ all:	$(NAME)
 
 $(NAME):
 	make -C $(LIB_FILE)
-	gcc -o $(NAME) $(MAIN_SRC) $(SRC) $(INCLUDE) $(LIB) -g3
+	gcc -o $(NAME) $(MAIN_SRC) $(SRC) $(INCLUDE) $(LIB)
 
 clean:
 	make clean -C $(LIB_FILE)
