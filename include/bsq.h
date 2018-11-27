@@ -20,6 +20,7 @@ typedef struct square {
     int y_big;
 } square_t;
 
+int fs_open_file(char const *str);
 void find_the_square(char **tab);
 
 #endif
