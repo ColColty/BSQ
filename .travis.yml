@@ -2,4 +2,12 @@ language: c
 
 compiler: gcc
 
+before_build:
+  - git clone --recursive https://github.com/Snaipe/Criterion
+  - mkdir build
+  - cd build
+  - cmake ..
+  - cmake --build .
+  - sudo make install
+
 script: make && ./bsq mouli_maps/testing_map && make tests_run
