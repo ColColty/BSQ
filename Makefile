@@ -13,7 +13,6 @@ TEST_SRC	=	$(realpath ./tests)
 
 SRC	=	$(SRC_DIR)/bsq.c	\
 	$(SRC_DIR)/find_the_square.c	\
-	testfile.c
 
 TESTS	=	$(TEST_SRC)/test_out.c	\
 
