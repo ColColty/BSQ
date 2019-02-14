@@ -10,4 +10,11 @@ before_build:
   - cmake --build .
   - sudo make install
 
-script: make && ./bsq mouli_maps/testing_map && make tests_run
+notification:
+  email:
+    recipients:
+      - tomas.forne-cappeau@epitech.eu
+    on_success: never
+    on_failure: always
+
+script: make && ./bsq mouli_maps/testing_map
