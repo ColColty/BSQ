@@ -9,7 +9,7 @@ notification:
     on_success: never
     on_failure: always
 
-install:
+before_"Tests":
   - sudo add-apt-repository ppa:snaipewastaken/ppa < test.cmd
   - sudo apt-get update
   - sudo apt install gcovr < test.cmd
@@ -20,6 +20,7 @@ jobs:
     - stage: "Build"
       script: make
     - stage: "Compilation"
+      script: make
       script: ./bsq mouli_maps/testing_map
     - stage: "Tests"
       script: make tests_run
