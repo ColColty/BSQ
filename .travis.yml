@@ -19,6 +19,7 @@ build:
   script:
     - make
 
-script:
-  - ./bsq mouli_maps/testing_map
-  - make tests_run
+test:
+  script:
+    - ./bsq mouli_maps/testing_map
+    - make tests_run
