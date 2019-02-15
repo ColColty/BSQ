@@ -9,11 +9,11 @@ notification:
     on_success: never
     on_failure: always
 
-before_build:
+install:
   - sudo add-apt-repository ppa:snaipewastaken/ppa < test.cmd
   - sudo apt-get update
-  - sudo apt-get install criterion-dev < test.cmd
   - sudo apt install gcovr < test.cmd
+  - sudo apt-get install criterion-dev < test.cmd
 
 stages:
   - name: build
@@ -23,6 +23,3 @@ stages:
 script:
   - ./bsq mouli_maps/testing_map
   - make tests_run
-
-deploy:
-  - echo "Hello"
