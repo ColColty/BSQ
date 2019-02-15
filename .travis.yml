@@ -17,4 +17,5 @@ script:
   - cmake ..
   - cmake --build .
   - sudo make install
-  - make && ./bsq mouli_maps/testing_map
+  - cd ../../
+  - make && ./bsq mouli_maps/testing_map && make tests_run
