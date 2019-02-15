@@ -2,14 +2,6 @@ language: c
 
 compiler: gcc
 
-before_build:
-  - git clone --recursive https://github.com/Snaipe/Criterion
-  - mkdir build
-  - cd build
-  - cmake ..
-  - cmake --build .
-  - sudo make install
-
 notification:
   email:
     recipients:
@@ -17,4 +9,11 @@ notification:
     on_success: never
     on_failure: always
 
-script: make && ./bsq mouli_maps/testing_map
+script:
+  - git clone --recursive https://github.com/Snaipe/Criterion
+  - mkdir build
+  - cd build
+  - cmake ..
+  - cmake --build .
+  - sudo make install
+  - make && ./bsq mouli_maps/testing_map
