@@ -11,6 +11,7 @@ notification:
 
 script:
   - git clone --recursive https://github.com/Snaipe/Criterion
+  - cd Criterion
   - mkdir build
   - cd build
   - cmake ..
