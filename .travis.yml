@@ -20,7 +20,8 @@ jobs:
     - stage: "Build"
       script: make
     - stage: "Compilation"
-      script: make
-      script: ./bsq mouli_maps/testing_map
+      script:
+        - make
+        - ./bsq mouli_maps/testing_map
     - stage: "Tests"
       script: make tests_run
