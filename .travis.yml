@@ -10,14 +10,9 @@ notification:
     on_failure: always
 
 script:
-  - git clone --recursive https://github.com/Snaipe/Criterion
-  - cd Criterion
-  - mkdir build
-  - cd build
-  - cmake ..
-  - cmake --build .
-  - sudo make install
-  - cd ../../
+  - sudo add-apt-repository ppa:snaipewastaken/ppa
+  - sudo apt-get update
+  - sudo apt-get install criterion-dev
   - make
   - ./bsq mouli_maps/testing_map
   - make tests_run
