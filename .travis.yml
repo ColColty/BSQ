@@ -18,12 +18,10 @@ notification:
 jobs:
   include:
     - stage: "Build"
-      name: "Building"
       script: make
-      - script: ./bsq mouli_maps/testing_map
-      name: "Compilation"
+    - stage: "Compilation"
+      script:
+        - make
+        - ./bsq mouli_maps/testing_map
     - stage: "Tests"
-      name: "Basic tests"
-      script: ./basic_tests.sh basic_tests.sh
-      - script: make tests_run
-      name: "Criterion tests"
+      script: make tests_run
