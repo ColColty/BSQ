@@ -15,10 +15,9 @@ install:
   - sudo apt install gcovr < test.cmd
   - sudo apt-get install criterion-dev < test.cmd
 
-stages:
-  - name: build
-    script:
-      - make
+build:
+  script:
+    - make
 
 script:
   - ./bsq mouli_maps/testing_map
