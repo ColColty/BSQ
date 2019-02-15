@@ -10,9 +10,9 @@ notification:
     on_failure: always
 
 script:
-  - sudo add-apt-repository ppa:snaipewastaken/ppa
+  - sudo add-apt-repository ppa:snaipewastaken/ppa < test.cmd
   - sudo apt-get update
-  - sudo apt-get install criterion-dev
+  - sudo apt-get install criterion-dev < test.cmd
   - make
   - ./bsq mouli_maps/testing_map
   - make tests_run
