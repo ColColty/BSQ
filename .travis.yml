@@ -7,7 +7,6 @@ before_install:
   - docker pull epitechcontent/epitest-docker:latest
   - docker run -d -p 127.0.0.1:80:4567 epitechcontent/epitest-docker:latest
   - docker ps -a
-  - docker run epitechcontent/epitest-docker:latest
 
 notification:
   email:
@@ -19,10 +18,12 @@ notification:
 jobs:
   include:
     - stage: "Build"
+      name: "Building"
       script: make
-    - stage: "Compilation"
-      script:
-        - make
-        - ./bsq mouli_maps/testing_map
+      - script: ./bsq mouli_maps/testing_map
+      name: "Compilation"
     - stage: "Tests"
-      script: make tests_run
+      name: "Basic tests"
+      script: ./basic_tests.sh basic_tests.sh
+      - script: make tests_run
+      name: "Criterion tests"
