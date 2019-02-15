@@ -1,6 +1,13 @@
 language: c
 
-compiler: gcc
+services:
+  - docker
+
+before_install:
+  - docker pull epitechcontent/epitest-docker:latest
+  - docker run -d -p 127.0.0.1:80:4567 epitechcontent/epitest-docker:latest
+  - docker ps -a
+  - docker run epitechcontent/epitest-docker:latest
 
 notification:
   email:
@@ -8,12 +15,6 @@ notification:
       - tomas.forne-cappeau@epitech.eu
     on_success: never
     on_failure: always
-
-before_"Tests":
-  - sudo add-apt-repository ppa:snaipewastaken/ppa < test.cmd
-  - sudo apt-get update
-  - sudo apt install gcovr < test.cmd
-  - sudo apt-get install criterion-dev < test.cmd
 
 jobs:
   include:
