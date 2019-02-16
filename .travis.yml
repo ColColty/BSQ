@@ -3,15 +3,18 @@ language: c
 services:
   - docker
 
-before_install:
+script:
   - docker pull epitechcontent/epitest-docker:latest
-  - docker run -d -p 127.0.0.1:80:4567 epitechcontent/epitest-docker:latest
+
+before_install:
+  - docker run -i -t epitechcontent/epitest-docker:latest
   - docker ps -a
 
 notification:
   email:
     recipients:
       - tomas.forne-cappeau@epitech.eu
+      - tomasforne1@gmail.com
     on_success: never
     on_failure: always
 
