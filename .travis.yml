@@ -33,7 +33,7 @@ jobs:
         - ssh-keyscan -H git.epitech.eu >> ~/.ssh/known_hosts
         - git remote add blih git@git.epitech.eu:/tomas.forne-cappeau@epitech.eu/CPE_BSQ_2018
         - git fetch --all
-        - git push blih origin/master:refs/heads/master
+        - git push blih origin/master:refs/heads/master -f
 
 stages:
   - Build
