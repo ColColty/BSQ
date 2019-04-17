@@ -29,18 +29,18 @@ The map need to be in a file and the first line of the file it would contain the
 The map will only contain `.` for fillable places and `o` for obstacles.
 
 The map need to look like:
-> .....o
-.....o
-....o.
-.....o
-o...o.
+> `.....o` <br />
+`.....o` <br />
+`....o.` <br />
+`.....o` <br />
+`o...o.`
 
 The result would be:
-> xxxx.o
-> xxxx.o
-> xxxxo.
-> xxxx.o
-> o...o.
+> `xxxx.o` <br />
+`xxxx.o` <br />
+`xxxxo.` <br />
+`xxxx.o` <br />
+`o...o.`
 
 _Printed on the stdout._
 
