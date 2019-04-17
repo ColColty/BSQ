@@ -4,5 +4,4 @@ unit_tests
 libmy.a
 *.gc*
 peda*
-NormEZ.rb
 .vscode

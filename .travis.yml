@@ -3,28 +3,40 @@ language: c
 services:
   - docker
 
-script:
-  - docker pull epitechcontent/epitest-docker:latest
-
-before_install:
-  - docker run -i -t epitechcontent/epitest-docker:latest
-  - docker ps -a
-
-notification:
+notifications:
   email:
     recipients:
       - tomas.forne-cappeau@epitech.eu
-      - tomasforne1@gmail.com
     on_success: never
     on_failure: always
 
+env:
+  global:
+    - DOCKER_REPO=cyberryteam/epitech-docker:fedora
+
+install:
+  - docker pull ${DOCKER_REPO}
+
 jobs:
   include:
-    - stage: "Build"
-      script: make
-    - stage: "Compilation"
+    - stage: Build
+      name: "Building"
+      script: docker run -v "$PWD:/app" ${DOCKER_REPO} bash -c "cd /app && make"
+    - stage: Tests
+      name: "Basic Tests"
+      script: docker run -v "$PWD:/app" ${DOCKER_REPO} bash -c "cd /app && ./tests/basic_tests.sh bsq"
+    - script: docker run -v "$PWD:/app" ${DOCKER_REPO} bash -c "cd /app && make tests_run"
+      name: "Make the tests"
+    - stage: Deployment
+      name: "Push to blih repo"
       script:
-        - make
-        - ./bsq mouli_maps/testing_map
-    - stage: "Tests"
-      script: make tests_run
+        - ssh-keyscan -H git.epitech.eu >> ~/.ssh/known_hosts
+        - git remote add blih git@git.epitech.eu:/tomas.forne-cappeau@epitech.eu/CPE_BSQ_2018
+        - git fetch --all
+        - git push blih origin/master:refs/heads/master
+
+stages:
+  - Build
+  - Tests
+  - name: Deployment
+    if: branch = master
