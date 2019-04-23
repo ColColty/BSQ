@@ -52,3 +52,9 @@ And on the other folder `mouli_maps_solved` you have the same maps solved to com
 There are unit tests that would test if the file is good and other ones that would tests the output.
 
 **Coverage: 97.8% | Branch coverage: 92.2%**
+
+# Developer
+ - [Colcolty](https://github.com/ColColty)
+ 
+ Contact-me or add a new issue on this repository if you find something to fix or add to it.
+ Thank you !
